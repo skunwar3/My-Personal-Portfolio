@@ -479,6 +479,183 @@
       transition: width 1s ease;
     }
 
+    /* Education & Experience Timeline */
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      width: 45%;
+      background: var(--dark-light);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: auto;
+      margin-left: 5%;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: auto;
+      margin-right: 5%;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      border: 4px solid var(--dark);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+
+    .timeline-content h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .timeline-content h4 {
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .timeline-date {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: inline-block;
+      background: rgba(132, 204, 22, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+    }
+
+    .timeline-content p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .timeline-content ul {
+      margin-top: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-content ul li {
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* Awards & Presentations */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .award-card {
+      background: var(--dark-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s;
+    }
+
+    .award-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 5px 20px rgba(132, 204, 22, 0.2);
+    }
+
+    .award-card h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .award-card .year {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      background: rgba(132, 204, 22, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .award-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .presentations-list {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .presentation-item {
+      background: var(--dark-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--secondary);
+      transition: all 0.3s;
+    }
+
+    .presentation-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 5px 20px rgba(52, 211, 153, 0.2);
+    }
+
+    .presentation-item h4 {
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .presentation-item .venue {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .presentation-item .location {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
     /* Contact */
     .contact-content {
       max-width: 600px;
@@ -554,7 +731,8 @@
       }
 
       .research-grid,
-      .skills-grid {
+      .skills-grid,
+      .awards-grid {
         grid-template-columns: 1fr;
       }
 
@@ -564,6 +742,27 @@
 
       .nav-links {
         display: none;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(odd) {
+        flex-direction: column;
+      }
+
+      .timeline-content,
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        width: 100%;
+        margin-left: 50px;
+        margin-right: 0;
+      }
+
+      .timeline-dot {
+        left: 20px;
       }
     }
   </style>
@@ -575,8 +774,10 @@
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#publications">Publications</a></li>
+        <li><a href="#achievements">Achievements</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -716,6 +917,166 @@
     </div>
   </section>
 
+  <section id="education" style="background: var(--dark-light);">
+    <div class="container">
+      <div class="section-title">
+        <h2>Education</h2>
+        <div class="underline"></div>
+      </div>
+      
+      <div class="timeline">
+        <!-- PhD -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Aug 2021 - Aug 2025</span>
+            <h3>Ph.D. in Plant Breeding</h3>
+            <h4>University of Florida, Gainesville, FL</h4>
+            <p><strong>Specialization:</strong> Phenomics and Quantitative Genetics</p>
+            <p><strong>Advisor:</strong> Dr. Ali Babar</p>
+            <ul>
+              <li>Enhanced predictive ability of genomic prediction models integrating environmental covariates</li>
+              <li>Operated UAV flights and developed AI-based prediction models using sensor-fusion</li>
+              <li>Improved harvest index, biomass partitioning traits and yield in wheat</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MS -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Jan 2019 - May 2021</span>
+            <h3>M.S. in Horticultural Sciences</h3>
+            <h4>University of Florida, Gainesville, FL</h4>
+            <p><strong>Specialization:</strong> Phenotyping and Plant Physiology</p>
+            <p><strong>Advisor:</strong> Dr. Ute Albrecht</p>
+            <ul>
+              <li>Evaluated large-scale citrus rootstock breeding trials in HLB-endemic conditions</li>
+              <li>Developed novel methodology for citrus leaf nutrient determination using UAV and ML</li>
+              <li>Contributed to molecular physiology tasks including DNA extraction and PCR assays</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- BS -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Apr 2013 - Dec 2017</span>
+            <h3>B.Sc. Agriculture</h3>
+            <h4>Agriculture and Forestry University, Chitwan, Nepal</h4>
+            <p>Awarded full merit government scholarship for academic excellence</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">
+        <h2>Professional Experience</h2>
+        <div class="underline"></div>
+      </div>
+      
+      <div class="timeline">
+        <!-- Current Position -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Aug 2025 - Present</span>
+            <h3>Assistant Professor</h3>
+            <h4>Langston University - School of Agriculture and Applied Sciences</h4>
+            <p><strong>Biosystem Engineering and Precision Agriculture</strong></p>
+            <ul>
+              <li>Apply UAV-based and proximal sensors, machine vision, and AI to advance phenotyping</li>
+              <li>Develop precision agriculture tools to improve efficiency of agricultural inputs</li>
+              <li>Lead research and teaching initiatives integrating cutting-edge technology</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Graduate Research Assistant - PhD -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Aug 2021 - Aug 2025</span>
+            <h3>Graduate Research Assistant</h3>
+            <h4>University of Florida - World Food Crop Breeding and Genetics Lab</h4>
+            <p><strong>PI:</strong> Dr. Ali Babar</p>
+            <ul>
+              <li>Enhanced predictive ability of genomic prediction models for complex traits</li>
+              <li>Designed and executed wheat and oat breeding trials and selections</li>
+              <li>Operated UAV flights integrating hyperspectral sensors and genomic data</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Graduate Research Assistant - MS -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Jan 2019 - Aug 2021</span>
+            <h3>Graduate Research Assistant</h3>
+            <h4>University of Florida - Plant Physiology Lab</h4>
+            <p><strong>PI:</strong> Dr. Ute Albrecht</p>
+            <ul>
+              <li>Evaluated citrus rootstock breeding trials for horticultural and physiological attributes</li>
+              <li>Collaborated on precision agriculture projects using UAV and machine learning</li>
+              <li>Conducted greenhouse research and molecular physiology experiments</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Teaching Experience -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Spring 2026</span>
+            <h3>Instructor - Plant Breeding</h3>
+            <h4>Langston University</h4>
+            <p>PSRS4343 – Plant Breeding Course</p>
+            <ul>
+              <li>Developed comprehensive curriculum integrating quantitative genetics and breeding practices</li>
+              <li>Delivered engaging lectures and facilitated discussions on complex concepts</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Agri-Market Analyst -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Mar 2018 - Jul 2018</span>
+            <h3>Agri-Market Analyst</h3>
+            <h4>Prime Minister Agriculture Modernization Project, Nepal</h4>
+            <p>Sweet Orange Super-zone, Sindhuli</p>
+            <ul>
+              <li>Analyzed agricultural market data for farmers</li>
+              <li>Published "Superzone profile" booklet with comprehensive sweet orange information</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Program Manager -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Dec 2017 - Dec 2018</span>
+            <h3>Program Manager & Instructor</h3>
+            <h4>Shree Rajeshwari Higher Secondary School, Nepal</h4>
+            <p>High School Crop Science Program</p>
+            <ul>
+              <li>Prepared and delivered lectures for field agronomic crops course</li>
+              <li>Trained students in basic agronomic field studies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="publications">
     <div class="container">
       <div class="section-title">
@@ -742,6 +1103,148 @@
           <h3>Determining leaf nutrient concentrations in citrus trees using UAV imagery and machine learning</h3>
           <p class="authors">Costa L., Kunwar S., Ampatzidis Y., Albrecht U.</p>
           <p class="journal">Precision Agriculture 23, 854–875 (2022)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements" style="background: var(--dark-light);">
+    <div class="container">
+      <div class="section-title">
+        <h2>Awards & Scholarships</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="awards-grid">
+        <div class="award-card">
+          <span class="year">2024</span>
+          <h4>First Place - Oral Presentation</h4>
+          <p>8th Annual Plant Breeding Retreat, University of Florida ($600)</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2024</span>
+          <h4>Gerald O. Mott Award</h4>
+          <p>Crop Science Society of America</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2024</span>
+          <h4>Bayer University Mentorship Program</h4>
+          <p>Selected for B4U Program</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2024</span>
+          <h4>First Place - Poster Competition</h4>
+          <p>8th Annual Plant Science Symposium, UF ($250)</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2024</span>
+          <h4>Dr. Elaine Turner Plant Breeding Scholarship</h4>
+          <p>University of Florida ($1,100)</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2024</span>
+          <h4>Plant Breeding Top-up Award</h4>
+          <p>University of Florida ($1,800)</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2023-25</span>
+          <h4>William C. and Bertha M. Cornett Fellowship</h4>
+          <p>UF/IFAS College of Agricultural and Life Sciences ($4,000)</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2023-24</span>
+          <h4>NAPB Borlaug Scholarship</h4>
+          <p>National Association of Plant Breeders</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2023</span>
+          <h4>Travel Grant - CSSA</h4>
+          <p>Western Society of Crop Science, Hawaii ($800)</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2022</span>
+          <h4>Travel Scholarship</h4>
+          <p>Society of Organic Seed Professionals, West Virginia</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2022</span>
+          <h4>Student Speaker Award</h4>
+          <p>Plant Science Council Symposium, UF ($250)</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2021</span>
+          <h4>Second Place - Best Student Paper</h4>
+          <p>Florida State Horticultural Society ($400)</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2021</span>
+          <h4>Plant Breeding Graduate Initiative Fellowship</h4>
+          <p>Ph.D. Program, University of Florida</p>
+        </div>
+        <div class="award-card">
+          <span class="year">2013-17</span>
+          <h4>Full Merit Government Scholarship</h4>
+          <p>B.Sc. Agriculture, Agriculture and Forestry University, Nepal</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="presentations">
+    <div class="container">
+      <div class="section-title">
+        <h2>Scientific Presentations</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="presentations-list">
+        <div class="presentation-item">
+          <h4>Deciphering the genomic regions influencing the hyperspectral-based phenome correlated with yield associated traits in wheat</h4>
+          <p class="venue">University of Florida Plant Breeding Retreat 2025</p>
+          <p class="location">Daytona, FL</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Enhancing wheat yield potential: integrating genomic and phenomic approaches for biomass partitioning optimization</h4>
+          <p class="venue">3rd International Wheat Congress 2024</p>
+          <p class="location">Perth, Australia</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Integrating remote sensing with genomics to enhance agronomic trait prediction in wheat</h4>
+          <p class="venue">University of Florida Plant Breeding Retreat 2024</p>
+          <p class="location">Daytona, FL</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Integrating remote sensing data for phenomic and genomic prediction of agronomic traits in wheat</h4>
+          <p class="venue">University of Florida Plant Science Symposium 2024</p>
+          <p class="location">Gainesville, FL</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Optimizing genomic prediction models to predict HI, yield, and biomass partitioning traits in wheat</h4>
+          <p class="venue">Louisiana State University Plant Science Symposium 2023</p>
+          <p class="location">Baton Rouge, LA</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Determining yield, harvest index, and biomass partitioning traits using UAV-based hyperspectral sensor and machine learning</h4>
+          <p class="venue">Western Crop Science Society (WCSSA) Annual Meeting 2023</p>
+          <p class="location">Honolulu, Hawaii</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Potential use of UAV-based remote sensing tools for indirect assessment of harvest index and biomass partitioning traits</h4>
+          <p class="venue">AI Conference 2023</p>
+          <p class="location">Orlando, FL</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Estimation of harvest index and biomass partitioning traits using UAV-based remote sensing and genomics</h4>
+          <p class="venue">Student Organic Seed Symposium 2022</p>
+          <p class="location">Morgantown, WV</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Evaluating citrus rootstocks for high-density plantings in HLB-endemic conditions</h4>
+          <p class="venue">American Society for Horticultural Science (ASHS) Annual Conference 2021</p>
+          <p class="location">Denver, CO</p>
+        </div>
+        <div class="presentation-item">
+          <h4>Field performances of 'Hamlin' orange trees on diploid and tetraploid rootstocks in HLB-endemic conditions</h4>
+          <p class="venue">Florida State Horticultural Society (FSHS) Annual Meeting 2020</p>
+          <p class="location">Florida</p>
         </div>
       </div>
     </div>
