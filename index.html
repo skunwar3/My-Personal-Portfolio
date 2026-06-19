@@ -113,10 +113,63 @@
     background-image:repeating-linear-gradient(100deg, transparent, transparent 26px, rgba(245,239,224,.5) 26px, rgba(245,239,224,.5) 27px);
     mask-image:linear-gradient(to bottom, transparent, black 35%, black 75%, transparent);
   }
+
+  /* UAV aerial field photo — blended into the right side of the hero.
+     Sits behind the content layer, masked on every edge so it dissolves
+     into the dark green background instead of showing a hard photo box. */
+  .hero-aerial{
+    position:absolute;
+    top:0; right:0; bottom:0;
+    width:58%;
+    z-index:1;
+    pointer-events:none;
+  }
+  .hero-aerial img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    opacity:.6;
+    mix-blend-mode:luminosity;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, black 38%, black 80%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%),
+      radial-gradient(ellipse 80% 90% at 70% 50%, black 55%, transparent 100%);
+    -webkit-mask-composite: source-in, source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, black 38%, black 80%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%),
+      radial-gradient(ellipse 80% 90% at 70% 50%, black 55%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+  /* extra soft color wash on top of the photo so it reads as part of the
+     same palette (gold/sage) rather than a foreign image dropped in */
+  .hero-aerial::after{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      linear-gradient(120deg, rgba(13,29,21,.85) 0%, rgba(13,29,21,.25) 32%, rgba(184,134,47,.12) 55%, rgba(91,122,99,.18) 100%),
+      radial-gradient(ellipse 70% 70% at 75% 45%, transparent 40%, rgba(13,29,21,.55) 100%);
+  }
+  @media(max-width:900px){
+    .hero-aerial{ width:100%; opacity:.5; }
+    .hero-aerial img{ opacity:.35; }
+  }
+  @media(max-width:620px){
+    .hero-aerial{ display:none; }
+  }
+
   .hero-inner{
     position:relative;z-index:2;
     max-width:1140px;margin:0 auto;
     display:grid;grid-template-columns:auto 1fr;gap:2.8rem;align-items:center;
+  }
+  /* nudges the whole text block slightly left, leaving clear room on the
+     right for the aerial photo to show through */
+  .hero-text{
+    max-width:540px;
+    margin-right:auto;
   }
   .hero-photo-placeholder{
     width:148px;height:148px;border-radius:50%;
@@ -173,6 +226,7 @@
   @media(max-width:620px){
     .hero-inner{grid-template-columns:1fr;gap:1.2rem;text-align:left;}
     .hero-photo-placeholder{width:92px;height:92px;font-size:2rem;}
+    .hero-text{max-width:none;}
   }
 
   /* ── DRONE SCAN STRIP ── */
@@ -399,6 +453,14 @@
 
 <section class="hero" id="home">
   <div class="field-rows"></div>
+
+  <!-- UAV aerial field photo blended into the right side of the hero.
+       Replace the src below with your UAV aerial shot — keep it in
+       ./assets/images/ alongside profile.jpg -->
+  <div class="hero-aerial">
+    <img src="./assets/images/uav-field-aerial.jpg" alt="">
+  </div>
+
   <div class="hero-inner">
     <img src="./assets/images/profile.jpg" alt="Dr. Sudip Kunwar" class="hero-photo-placeholder" style="object-fit:cover; object-position: center 20%;">
     <div class="hero-text">
