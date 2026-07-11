@@ -336,45 +336,32 @@
   .stag.or{background:var(--rust-tint);color:var(--rust);border-color:#f0c8b5;}
   @media(max-width:680px){.skills-two-col{grid-template-columns:1fr;}}
 
-  /* ── TOP SECTION: About card + sticky social sidebar ── */
-  .top-section{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:stretch;margin-bottom:1.5rem;}
-  .top-section .card{margin-bottom:0;}
-  .feed-sidebar{position:sticky;top:5.2rem;display:flex;flex-direction:column;gap:1.1rem;align-self:start;max-height:calc(100vh - 6rem);}
-  .feed-panel{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
-  @media(max-width:960px){
-    .top-section{grid-template-columns:1fr;align-items:start;}
-    .feed-sidebar{position:static;flex-direction:row;flex-wrap:wrap;max-height:none;}
-    .feed-sidebar .feed-panel{flex:1 1 280px;}
-  }
-  @media(max-width:620px){
-    .feed-sidebar{flex-direction:column;}
-  }
-
   /* ── SOCIAL FEEDS ── */
+  .feed-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;}
+  @media(max-width:820px){.feed-grid{grid-template-columns:1fr;}}
   .feed-panel{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--paper-2);display:flex;flex-direction:column;box-shadow:var(--shadow-sm);}
-  .feed-panel-header{padding:.85rem .95rem;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid var(--line);background:var(--card);flex-shrink:0;}
-  .feed-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
+  .feed-panel-header{padding:.95rem 1.1rem;display:flex;align-items:center;gap:.65rem;border-bottom:1px solid var(--line);background:var(--card);flex-shrink:0;}
+  .feed-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
   .feed-icon.li{background:var(--linkedin);}
   .feed-icon.xf{background:var(--xblack);}
-  .feed-panel-header h4{font-family:var(--font-display);font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.2;}
-  .feed-panel-header p{font-size:.7rem;color:var(--muted);}
-  .feed-follow-btn{margin-left:auto;padding:.3rem .65rem;border-radius:7px;font-size:.68rem;font-weight:700;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft);white-space:nowrap;transition:.2s;}
+  .feed-panel-header h4{font-family:var(--font-display);font-size:.95rem;font-weight:600;color:var(--ink);line-height:1.2;}
+  .feed-panel-header p{font-size:.72rem;color:var(--muted);}
+  .feed-follow-btn{margin-left:auto;padding:.32rem .75rem;border-radius:7px;font-size:.72rem;font-weight:700;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft);white-space:nowrap;transition:.2s;}
   .feed-follow-btn:hover{border-color:var(--gold);color:var(--gold-deep);}
   .feed-embed-slot{
-    flex:1 1 auto;min-height:0;height:100%;overflow-y:auto;overflow-x:hidden;
-    background:#fff;padding:.9rem .95rem;
-    font-size:.8rem;color:var(--muted);
+    height:640px;overflow:hidden;
+    background:#fff;padding:1rem 1.1rem;
+    font-size:.82rem;color:var(--muted);
     display:flex;flex-direction:column;gap:.6rem;
-    contain:size layout;
   }
   .feed-embed-slot > *{max-width:100%;}
-  @media(max-width:960px){
-    .feed-embed-slot{height:320px;}
+  @media(max-width:600px){
+    .feed-embed-slot{height:460px;}
   }
   .feed-embed-slot .feed-placeholder-note{
-    font-family:var(--font-mono);font-size:.68rem;color:var(--gold-deep);
+    font-family:var(--font-mono);font-size:.7rem;color:var(--gold-deep);
     background:var(--gold-tint);border:1px dashed #e9d3a3;border-radius:8px;
-    padding:.6rem .7rem;line-height:1.55;
+    padding:.6rem .75rem;line-height:1.55;
   }
   .feed-embed-slot .feed-placeholder-note code{background:rgba(255,255,255,.6);padding:.05rem .3rem;border-radius:4px;}
 
@@ -406,7 +393,7 @@
       <li><a href="#awards">Awards</a></li>
       <li><a href="#presentations">Presentations</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#about">Latest Activity</a></li>
+      <li><a href="#feeds">Latest Activity</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -475,83 +462,92 @@
 
 <main class="main">
 
-  <div class="top-section">
-    <div class="card reveal" id="about">
-      <div class="card-header open" onclick="toggleCard(this)">
-        <div class="card-title"><div class="card-icon">👤</div> About Me</div>
-        <span class="caret open">▼</span>
-      </div>
-      <div class="card-body open">
-        <div class="about-grid">
-          <div>
-            <p>I am an <strong>Assistant Professor of Precision Agriculture</strong> at Langston University, where my research leverages UAVs, advanced sensors, and artificial intelligence to design scalable phenotyping platforms.</p>
-            <p>With over 7 years of experience in phenotypic analysis, remote sensing, genomic selection, and multi-omic predictive breeding strategies, I bring expertise in advanced statistical analysis, R and Python programming, and quantitative genetics.</p>
-            <p>My commitment is to advance agricultural technology through innovative tools that accelerate crop genetic improvement and strengthen agricultural resilience.</p>
-          </div>
-          <div>
-            <p class="label-sm">Research Focus Areas</p>
-            <div class="research-chips">
-              <span class="chip">Precision Agriculture</span>
-              <span class="chip chip-orange">Remote Sensing</span>
-              <span class="chip">High-Throughput Phenotyping</span>
-              <span class="chip">Quantitative Genetics</span>
-              <span class="chip">Predictive Breeding</span>
-              <span class="chip chip-orange">Machine Learning / AI</span>
-              <span class="chip chip-orange">Hyperspectral Imaging</span>
-              <span class="chip">Genomic Selection</span>
-              <span class="chip">GWAS</span>
-              <span class="chip chip-orange">Crop Resilience Improvement</span>
-            </div>
+  <div class="card reveal" id="about">
+    <div class="card-header open" onclick="toggleCard(this)">
+      <div class="card-title"><div class="card-icon">👤</div> About Me</div>
+      <span class="caret open">▼</span>
+    </div>
+    <div class="card-body open">
+      <div class="about-grid">
+        <div>
+          <p>I am an <strong>Assistant Professor of Precision Agriculture</strong> at Langston University, where my research leverages UAVs, advanced sensors, and artificial intelligence to design scalable phenotyping platforms.</p>
+          <p>With over 7 years of experience in phenotypic analysis, remote sensing, genomic selection, and multi-omic predictive breeding strategies, I bring expertise in advanced statistical analysis, R and Python programming, and quantitative genetics.</p>
+          <p>My commitment is to advance agricultural technology through innovative tools that accelerate crop genetic improvement and strengthen agricultural resilience.</p>
+        </div>
+        <div>
+          <p class="label-sm">Research Focus Areas</p>
+          <div class="research-chips">
+            <span class="chip">Precision Agriculture</span>
+            <span class="chip chip-orange">Remote Sensing</span>
+            <span class="chip">High-Throughput Phenotyping</span>
+            <span class="chip">Quantitative Genetics</span>
+            <span class="chip">Predictive Breeding</span>
+            <span class="chip chip-orange">Machine Learning / AI</span>
+            <span class="chip chip-orange">Hyperspectral Imaging</span>
+            <span class="chip">Genomic Selection</span>
+            <span class="chip">GWAS</span>
+            <span class="chip chip-orange">Crop Resilience Improvement</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ══════════════════════════════════════════════════════
-         SOCIAL SIDEBAR — LinkedIn + X live feed panels, stacked
-         next to About Me. Each .feed-embed-slot is a drop-in
-         target for a third-party widget embed script (SociableKIT,
-         Elfsight, etc.) or X's native timeline embed. Replace the
-         placeholder note / swap in the provider's <script>/<a> tag.
-         ══════════════════════════════════════════════════════ -->
-    <aside class="feed-sidebar reveal">
+  <!-- ══════════════════════════════════════════════════════
+       LATEST ACTIVITY — LinkedIn + X live feed panels.
+       Full-width card, same width as every other section.
+       Each .feed-embed-slot is a drop-in target for a
+       third-party widget embed script (SociableKIT, Elfsight,
+       etc.) or X's native timeline embed.
+       ══════════════════════════════════════════════════════ -->
+  <div class="card reveal" id="feeds">
+    <div class="card-header open" onclick="toggleCard(this)">
+      <div class="card-title"><div class="card-icon">📡</div> Latest Activity</div>
+      <span class="caret open">▼</span>
+    </div>
+    <div class="card-body open">
+      <div class="feed-grid">
 
-      <!-- LinkedIn panel -->
-      <div class="feed-panel">
-        <div class="feed-panel-header">
-          <div class="feed-icon li">
-            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.065 2.065 0 1 1 0-4.13 2.065 2.065 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <!-- LinkedIn panel -->
+        <div class="feed-panel">
+          <div class="feed-panel-header">
+            <div class="feed-icon li">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.065 2.065 0 1 1 0-4.13 2.065 2.065 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </div>
+            <div>
+              <h4>LinkedIn</h4>
+              <p>@skunwar3</p>
+            </div>
+            <a href="https://www.linkedin.com/in/skunwar3/" target="_blank" class="feed-follow-btn">+ Follow</a>
           </div>
-          <div>
-            <h4>LinkedIn</h4>
-            <p>@skunwar3</p>
+          <div class="feed-embed-slot" id="linkedinFeedSlot" style="padding:0;">
+            <iframe
+              title="LinkedIn feed"
+              style="width:100%;height:100%;border:0;display:block;"
+              srcdoc="&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'&gt;&lt;style&gt;html,body{margin:0;padding:10px;font-family:Inter,Arial,sans-serif;box-sizing:border-box;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='sk-ww-linkedin-page-post' data-embed-id='25696446'&gt;&lt;/div&gt;&lt;script src='https://widgets.sociablekit.com/linkedin-page-posts/widget.js' defer&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"
+            ></iframe>
           </div>
-          <a href="https://www.linkedin.com/in/skunwar3/" target="_blank" class="feed-follow-btn">+ Follow</a>
         </div>
-        <div class="feed-embed-slot" id="linkedinFeedSlot">
-          <div class="sk-ww-linkedin-page-post" data-embed-id="25696446"></div>
-          <script src="https://widgets.sociablekit.com/linkedin-page-posts/widget.js" defer></script>
+
+        <!-- X (Twitter) panel -->
+        <div class="feed-panel">
+          <div class="feed-panel-header">
+            <div class="feed-icon xf">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <div>
+              <h4>X (Twitter)</h4>
+              <p>@SudipKunwar</p>
+            </div>
+            <a href="https://twitter.com/SudipKunwar" target="_blank" class="feed-follow-btn">+ Follow</a>
+          </div>
+          <div class="feed-embed-slot" id="xFeedSlot">
+            <a class="twitter-timeline" data-height="640" data-theme="light" data-chrome="noheader nofooter noborders transparent" href="https://twitter.com/SudipKunwar?ref_src=twsrc%5Etfw">Tweets by SudipKunwar</a>
+          </div>
         </div>
+
       </div>
-
-      <!-- X (Twitter) panel -->
-      <div class="feed-panel">
-        <div class="feed-panel-header">
-          <div class="feed-icon xf">
-            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </div>
-          <div>
-            <h4>X (Twitter)</h4>
-            <p>@SudipKunwar</p>
-          </div>
-          <a href="https://twitter.com/SudipKunwar" target="_blank" class="feed-follow-btn">+ Follow</a>
-        </div>
-        <div class="feed-embed-slot" id="xFeedSlot">
-          <a class="twitter-timeline" data-height="320" data-theme="light" data-chrome="noheader nofooter noborders transparent" href="https://twitter.com/SudipKunwar?ref_src=twsrc%5Etfw">Tweets by SudipKunwar</a>
-        </div>
-      </div>
-
-    </aside>
+    </div>
   </div>
 
   <div class="card reveal" id="edu-exp">
