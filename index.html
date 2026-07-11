@@ -24,6 +24,10 @@
     --rust-tint:  #faeae3;
     --sage:       #5b7a63;
     --muted:      #6e6557;
+    --linkedin:   #0a66c2;
+    --linkedin-tint: #e8f1fb;
+    --xblack:     #0f1419;
+    --xblack-tint:#eef0f1;
     --font-display: 'Fraunces', serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
@@ -97,21 +101,12 @@
     mask-image:linear-gradient(to bottom, transparent, black 35%, black 75%, transparent);
   }
 
-  /* ═══════════════════════════════════════════════════════
-     HERO SLIDESHOW
-     The wrapper holds the exact same position/size as the
-     original .hero-aerial single-image container.
-     Each .hero-aerial-slide is absolutely stacked; only the
-     .active one fades in.  The ::after colour-wash overlay
-     sits on top of all slides combined — applied once.
-  ═══════════════════════════════════════════════════════ */
   .hero-aerial{
     position:absolute;top:0;right:0;bottom:0;
     width:50%;z-index:1;pointer-events:none;
     isolation:isolate;
   }
 
-  /* Individual slides stack on top of each other */
   .hero-aerial-slide{
     position:absolute;inset:0;
     opacity:0;
@@ -119,7 +114,6 @@
   }
   .hero-aerial-slide.active{ opacity:1; }
 
-  /* Every image gets the luminosity-blend + edge-mask treatment */
   .hero-aerial-slide img{
     width:100%;height:100%;
     object-fit:cover;object-position:center;
@@ -138,7 +132,6 @@
     -webkit-mask-composite:source-in;
   }
 
-  /* Single shared colour-wash overlay applied once on the wrapper */
   .hero-aerial::after{
     content:'';position:absolute;inset:0;z-index:2;
     background:
@@ -146,7 +139,6 @@
       radial-gradient(ellipse 70% 70% at 75% 45%, transparent 40%, rgba(13,29,21,.55) 100%);
   }
 
-  /* Navigation dots at bottom-right of the hero */
   .slideshow-dots{
     position:absolute;bottom:1.1rem;right:1.6rem;
     z-index:3;display:flex;gap:.45rem;align-items:center;
@@ -216,12 +208,10 @@
   .drone-strip{position:relative;height:54px;overflow:hidden;background:linear-gradient(90deg, #0d1d15, #1a3327 50%, #0d1d15);border-top:1px solid rgba(184,134,47,.25);border-bottom:1px solid rgba(184,134,47,.25);}
   .drone-strip .scan-track{position:absolute;inset:0;background-image:repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(184,134,47,.18) 38px, rgba(184,134,47,.18) 39px);}
 
-  /* Outer element = the horizontal flight path across the strip */
   .drone-flight{
     position:absolute;top:50%;left:-70px;
     animation:dronefly 19s cubic-bezier(.42,0,.58,1) infinite;
   }
-  /* Inner element = gentle hover bob + micro-tilt, independent of flight */
   .drone-bob{
     display:block;
     animation:dronebob 2.1s ease-in-out infinite;
@@ -346,6 +336,42 @@
   .stag.or{background:var(--rust-tint);color:var(--rust);border-color:#f0c8b5;}
   @media(max-width:680px){.skills-two-col{grid-template-columns:1fr;}}
 
+  /* ── TOP SECTION: About card + sticky social sidebar ── */
+  .top-section{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start;margin-bottom:1.5rem;}
+  .top-section .card{margin-bottom:0;}
+  .feed-sidebar{position:sticky;top:5.2rem;display:flex;flex-direction:column;gap:1.1rem;}
+  @media(max-width:960px){
+    .top-section{grid-template-columns:1fr;}
+    .feed-sidebar{position:static;flex-direction:row;flex-wrap:wrap;}
+    .feed-sidebar .feed-panel{flex:1 1 280px;}
+  }
+  @media(max-width:620px){
+    .feed-sidebar{flex-direction:column;}
+  }
+
+  /* ── SOCIAL FEEDS ── */
+  .feed-panel{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--paper-2);display:flex;flex-direction:column;box-shadow:var(--shadow-sm);}
+  .feed-panel-header{padding:.85rem .95rem;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid var(--line);background:var(--card);}
+  .feed-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
+  .feed-icon.li{background:var(--linkedin);}
+  .feed-icon.xf{background:var(--xblack);}
+  .feed-panel-header h4{font-family:var(--font-display);font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.2;}
+  .feed-panel-header p{font-size:.7rem;color:var(--muted);}
+  .feed-follow-btn{margin-left:auto;padding:.3rem .65rem;border-radius:7px;font-size:.68rem;font-weight:700;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft);white-space:nowrap;transition:.2s;}
+  .feed-follow-btn:hover{border-color:var(--gold);color:var(--gold-deep);}
+  .feed-embed-slot{
+    min-height:260px;max-height:360px;overflow-y:auto;
+    background:#fff;padding:.9rem .95rem;
+    font-size:.8rem;color:var(--muted);
+    display:flex;flex-direction:column;gap:.6rem;
+  }
+  .feed-embed-slot .feed-placeholder-note{
+    font-family:var(--font-mono);font-size:.68rem;color:var(--gold-deep);
+    background:var(--gold-tint);border:1px dashed #e9d3a3;border-radius:8px;
+    padding:.6rem .7rem;line-height:1.55;
+  }
+  .feed-embed-slot .feed-placeholder-note code{background:rgba(255,255,255,.6);padding:.05rem .3rem;border-radius:4px;}
+
   /* ── CONTACT ── */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
   .contact-card{background:var(--paper-2);border:1px solid var(--line);border-radius:11px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start;transition:.2s;}
@@ -374,6 +400,7 @@
       <li><a href="#awards">Awards</a></li>
       <li><a href="#presentations">Presentations</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">Latest Activity</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -381,15 +408,7 @@
 
 <section class="hero" id="home">
   <div class="field-rows"></div>
-
-  <!--
-    ═══════════════════════════════════════════════════════════════════
-    HERO SLIDESHOW  —  auto-generated from IMAGE list in the script.
-    ═══════════════════════════════════════════════════════════════════
-  -->
   <div class="hero-aerial" id="heroSlideshow"></div>
-
-  <!-- Gold dot indicators — auto-generated to match image count -->
   <div class="slideshow-dots" id="slideshowDots"></div>
 
   <div class="hero-inner">
@@ -426,33 +445,21 @@
   <div class="drone-flight">
     <div class="drone-bob">
       <svg class="drone-anim" width="70" height="40" viewBox="0 0 70 40" xmlns="http://www.w3.org/2000/svg">
-        <!-- ground scan beam -->
         <ellipse class="scan-beam" cx="35" cy="34" rx="21" ry="3.6" fill="#b8862f"/>
-        <!-- soft contact shadow -->
         <ellipse class="drone-shadow" cx="35" cy="34" rx="14" ry="2.4" fill="#000"/>
-
-        <!-- arms (X-frame) -->
         <line x1="18" y1="18" x2="52" y2="18" stroke="#e9e2cf" stroke-width="1.6" opacity=".9"/>
         <line x1="35" y1="8" x2="35" y2="24" stroke="#e9e2cf" stroke-width="1.6" opacity=".9"/>
-
-        <!-- 4 rotor blur discs (opacity-pulsed to fake motion blur) -->
         <ellipse class="rotor-blur" cx="18" cy="18" rx="8.5" ry="2.4" fill="#f5efe0"/>
         <ellipse class="rotor-blur" cx="52" cy="18" rx="8.5" ry="2.4" fill="#f5efe0"/>
         <ellipse class="rotor-blur" cx="35" cy="8"  rx="8.5" ry="2.4" fill="#f5efe0" transform="rotate(90 35 8)"/>
         <ellipse class="rotor-blur" cx="35" cy="24" rx="8.5" ry="2.4" fill="#f5efe0" transform="rotate(90 35 24)"/>
-
-        <!-- motor hubs -->
         <circle cx="18" cy="18" r="2.1" fill="#1a1a1a"/>
         <circle cx="52" cy="18" r="2.1" fill="#1a1a1a"/>
         <circle cx="35" cy="8"  r="2.1" fill="#1a1a1a"/>
         <circle cx="35" cy="24" r="2.1" fill="#1a1a1a"/>
-
-        <!-- body -->
         <rect x="29" y="14" width="12" height="9" rx="2.4" fill="#20261e"/>
         <circle cx="35" cy="18.4" r="1.3" fill="#b8862f"/>
-        <!-- gimbal / camera -->
         <circle cx="35" cy="24.5" r="1.6" fill="#12140f"/>
-        <!-- nav lights -->
         <circle cx="18" cy="18" r="1" fill="#ad4a2c"/>
         <circle cx="52" cy="18" r="1" fill="#5b7a63"/>
       </svg>
@@ -462,35 +469,83 @@
 
 <main class="main">
 
-  <div class="card reveal" id="about">
-    <div class="card-header open" onclick="toggleCard(this)">
-      <div class="card-title"><div class="card-icon">👤</div> About Me</div>
-      <span class="caret open">▼</span>
-    </div>
-    <div class="card-body open">
-      <div class="about-grid">
-        <div>
-          <p>I am an <strong>Assistant Professor of Precision Agriculture</strong> at Langston University, where my research leverages UAVs, advanced sensors, and artificial intelligence to design scalable phenotyping platforms.</p>
-          <p>With over 7 years of experience in phenotypic analysis, remote sensing, genomic selection, and multi-omic predictive breeding strategies, I bring expertise in advanced statistical analysis, R and Python programming, and quantitative genetics.</p>
-          <p>My commitment is to advance agricultural technology through innovative tools that accelerate crop genetic improvement and strengthen agricultural resilience.</p>
-        </div>
-        <div>
-          <p class="label-sm">Research Focus Areas</p>
-          <div class="research-chips">
-            <span class="chip">Precision Agriculture</span>
-            <span class="chip chip-orange">Remote Sensing</span>
-            <span class="chip">High-Throughput Phenotyping</span>
-            <span class="chip">Quantitative Genetics</span>
-            <span class="chip">Predictive Breeding</span>
-            <span class="chip chip-orange">Machine Learning / AI</span>
-            <span class="chip chip-orange">Hyperspectral Imaging</span>
-            <span class="chip">Genomic Selection</span>
-            <span class="chip">GWAS</span>
-            <span class="chip chip-orange">Crop Resilience Improvement</span>
+  <div class="top-section">
+    <div class="card reveal" id="about">
+      <div class="card-header open" onclick="toggleCard(this)">
+        <div class="card-title"><div class="card-icon">👤</div> About Me</div>
+        <span class="caret open">▼</span>
+      </div>
+      <div class="card-body open">
+        <div class="about-grid">
+          <div>
+            <p>I am an <strong>Assistant Professor of Precision Agriculture</strong> at Langston University, where my research leverages UAVs, advanced sensors, and artificial intelligence to design scalable phenotyping platforms.</p>
+            <p>With over 7 years of experience in phenotypic analysis, remote sensing, genomic selection, and multi-omic predictive breeding strategies, I bring expertise in advanced statistical analysis, R and Python programming, and quantitative genetics.</p>
+            <p>My commitment is to advance agricultural technology through innovative tools that accelerate crop genetic improvement and strengthen agricultural resilience.</p>
+          </div>
+          <div>
+            <p class="label-sm">Research Focus Areas</p>
+            <div class="research-chips">
+              <span class="chip">Precision Agriculture</span>
+              <span class="chip chip-orange">Remote Sensing</span>
+              <span class="chip">High-Throughput Phenotyping</span>
+              <span class="chip">Quantitative Genetics</span>
+              <span class="chip">Predictive Breeding</span>
+              <span class="chip chip-orange">Machine Learning / AI</span>
+              <span class="chip chip-orange">Hyperspectral Imaging</span>
+              <span class="chip">Genomic Selection</span>
+              <span class="chip">GWAS</span>
+              <span class="chip chip-orange">Crop Resilience Improvement</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SOCIAL SIDEBAR — LinkedIn + X live feed panels, stacked
+         next to About Me. Each .feed-embed-slot is a drop-in
+         target for a third-party widget embed script (SociableKIT,
+         Elfsight, etc.) or X's native timeline embed. Replace the
+         placeholder note / swap in the provider's <script>/<a> tag.
+         ══════════════════════════════════════════════════════ -->
+    <aside class="feed-sidebar reveal">
+
+      <!-- LinkedIn panel -->
+      <div class="feed-panel">
+        <div class="feed-panel-header">
+          <div class="feed-icon li">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.065 2.065 0 1 1 0-4.13 2.065 2.065 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          </div>
+          <div>
+            <h4>LinkedIn</h4>
+            <p>@skunwar3</p>
+          </div>
+          <a href="https://www.linkedin.com/in/skunwar3/" target="_blank" class="feed-follow-btn">+ Follow</a>
+        </div>
+        <div class="feed-embed-slot" id="linkedinFeedSlot">
+          <div class="sk-ww-linkedin-page-post" data-embed-id="25696446"></div>
+          <script src="https://widgets.sociablekit.com/linkedin-page-posts/widget.js" defer></script>
+        </div>
+      </div>
+
+      <!-- X (Twitter) panel -->
+      <div class="feed-panel">
+        <div class="feed-panel-header">
+          <div class="feed-icon xf">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div>
+            <h4>X (Twitter)</h4>
+            <p>@SudipKunwar</p>
+          </div>
+          <a href="https://twitter.com/SudipKunwar" target="_blank" class="feed-follow-btn">+ Follow</a>
+        </div>
+        <div class="feed-embed-slot" id="xFeedSlot">
+          <a class="twitter-timeline" data-height="320" data-theme="light" data-chrome="noheader nofooter noborders transparent" href="https://twitter.com/SudipKunwar?ref_src=twsrc%5Etfw">Tweets by SudipKunwar</a>
+        </div>
+      </div>
+
+    </aside>
   </div>
 
   <div class="card reveal" id="edu-exp">
@@ -797,6 +852,9 @@
   <p>© 2026 Dr. Sudip Kunwar · Assistant Professor, Langston University</p>
 </footer>
 
+<!-- X (Twitter) native widgets.js — powers the timeline embed in the X panel above -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <script>
   // ── NAV ──
   document.getElementById('hbg').addEventListener('click', function() {
@@ -840,8 +898,6 @@
   }
 
   // ── HERO SLIDESHOW ──
-  // To add/remove/reorder images later, just edit this list — nothing else
-  // needs to change. Any number of images works (1, 5, 20, etc.).
   const HERO_IMAGES = [
     { src: './assets/images/background1.jpg', alt: 'UAV aerial field survey' },
     { src: './assets/images/background2.jpg', alt: 'Drone in flight over crop field' },
@@ -852,14 +908,12 @@
     { src: './assets/images/background7.jpg', alt: 'Extension Activities' },
     { src: './assets/images/background8.jpg', alt: 'Panel Discussion' },
     { src: './assets/images/background9.jpg', alt: 'Multispectral drones' }
-    // { src: './assets/images/background6.jpg', alt: 'Describe the new photo here' },
   ];
 
   (function () {
     const wrap = document.getElementById('heroSlideshow');
     const dotsWrap = document.getElementById('slideshowDots');
 
-    // Build slides + dots from the HERO_IMAGES list above
     HERO_IMAGES.forEach((item, i) => {
       const slide = document.createElement('div');
       slide.className = 'hero-aerial-slide' + (i === 0 ? ' active' : '');
@@ -880,11 +934,10 @@
     const dots     = document.querySelectorAll('.slideshow-dot');
     let   current  = 0;
 
-    // Single image → no need for dots/rotation
     if (slides.length <= 1) { dotsWrap.style.display = 'none'; return; }
     let   timer    = null;
-    const AUTO_MS  = 3000;  // auto-advance interval
-    const PAUSE_MS = 8000;  // longer interval after a manual dot click
+    const AUTO_MS  = 3000;
+    const PAUSE_MS = 8000;
 
     function goTo(index) {
       slides[current].classList.remove('active');
@@ -899,7 +952,6 @@
       timer = setInterval(() => goTo(current + 1), delay || AUTO_MS);
     }
 
-    // Dot click → jump to that slide, then restart timer with a longer pause
     dots.forEach(dot => {
       dot.addEventListener('click', function () {
         goTo(parseInt(this.dataset.index, 10));
@@ -907,11 +959,9 @@
       });
     });
 
-    // Pause on hover, resume on leave
     wrap.addEventListener('mouseenter', () => clearInterval(timer));
     wrap.addEventListener('mouseleave', () => startAuto());
 
-    // Respect prefers-reduced-motion
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (!mq.matches) startAuto();
     mq.addEventListener('change', e => {
