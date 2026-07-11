@@ -309,7 +309,9 @@
   .awards-summary{font-size:.83rem;color:var(--muted);}
   .btn-sm{padding:.34rem .9rem;font-size:.78rem;border-radius:7px;font-weight:700;border:1.5px solid var(--ink);background:none;color:var(--ink);cursor:pointer;transition:.2s;}
   .btn-sm:hover{background:var(--ink);color:#f5efe0;}
-  .awards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:.8rem;}
+  .awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
+  @media(max-width:700px){.awards-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:460px){.awards-grid{grid-template-columns:1fr;}}
   .award-card{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 9px 9px 0;padding:.75rem .9rem;transition:box-shadow .2s,transform .2s;}
   .award-card:hover{box-shadow:0 4px 16px rgba(17,37,28,.1);transform:translateY(-1px);}
   .award-year{font-family:var(--font-mono);font-size:.68rem;font-weight:700;color:var(--rust);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.28rem;}
@@ -716,7 +718,7 @@
         <div class="award-card"><div class="award-year">2024</div><h4>Gerald O. Mott Award</h4><p>Crop Science Society of America</p></div>
         <div class="award-card"><div class="award-year">2024</div><h4>Bayer B4U Mentorship Program</h4><p>Selected for Bayer University Mentorship Program</p></div>
         <div class="award-card"><div class="award-year">2023–25</div><h4>William C. &amp; Bertha M. Cornett Fellowship</h4><p>UF/IFAS College of Agricultural and Life Sciences</p></div>
-        <div class="award-card"><div class="award-year">2023–24</div><h4>NAPB Borlaug Scholarship</h4><p>National Association of Plant Breeders</p></div>
+        <div class="award-card awards-hidden"><div class="award-year">2023–24</div><h4>NAPB Borlaug Scholarship</h4><p>National Association of Plant Breeders</p></div>
         <div class="award-card awards-hidden"><div class="award-year">2024</div><h4>First Place – Oral Presentation</h4><p>8th Annual Plant Breeding Retreat, University of Florida</p></div>
         <div class="award-card awards-hidden"><div class="award-year">2024</div><h4>First Place – Poster Competition</h4><p>8th Annual Plant Science Symposium, UF</p></div>
         <div class="award-card awards-hidden"><div class="award-year">2024</div><h4>Dr. Elaine Turner Plant Breeding Scholarship</h4><p>University of Florida</p></div>
